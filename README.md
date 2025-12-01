@@ -1,4 +1,5 @@
 Advantest R6581 DMM VFD reverse engineered and now with ability to drive a 320x960 TFT LCD.
+https://www.eevblog.com/forum/repair/advantestadcmt-r6581-vfd-to-tft-conversion/
 
 R6581 reverse engineering By Mickle T, he developed the orignal OLED conversion, EEVBlog thread here:
 https://www.eevblog.com/forum/repair/advantest-r6581-vfd-replacement/
