@@ -4,21 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
-# Visual Studio / build junk
-.vs/
-*.user
-*.vgdbsettings
-*.vgdbsettings.*
-Debug/
-Release/
-bin/
-obj/
-*.hex
-*.elf
-*.bin
 
-# VisualGDB specific - ignore the whole folder and contents
-VisualGDB/
 
 
 
