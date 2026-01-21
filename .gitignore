@@ -4,8 +4,21 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
-!R6581_VS_Display.hex
-!*.hex   # if you want all .hex files
+# Visual Studio / build junk
+.vs/
+*.user
+*.vgdbsettings
+*.vgdbsettings.*
+Debug/
+Release/
+bin/
+obj/
+*.hex
+*.elf
+*.bin
+
+# VisualGDB specific - ignore the whole folder and contents
+VisualGDB/
 
 
 
