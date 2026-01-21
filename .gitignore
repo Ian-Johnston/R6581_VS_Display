@@ -4,6 +4,11 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
+!R6581_VS_Display.hex
+!*.hex   # if you want all .hex files
+
+
+
 # User-specific files
 *.rsuser
 *.suo
