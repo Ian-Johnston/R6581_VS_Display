@@ -1,0 +1,4 @@
+VisualGDB/Debug/Core/Startup/startup_stm32f103c8tx.o: \
+ Core/Startup/startup_stm32f103c8tx.S \
+ C:/Users/Ian/AppData/Local/VisualGDB/EmbeddedEFPs/Profiler/ProfilerFreeRTOSHooks.h
+C:/Users/Ian/AppData/Local/VisualGDB/EmbeddedEFPs/Profiler/ProfilerFreeRTOSHooks.h:

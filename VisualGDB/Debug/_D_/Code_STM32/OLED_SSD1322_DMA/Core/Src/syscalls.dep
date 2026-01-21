@@ -1,0 +1,94 @@
+VisualGDB/Debug/_D_/Code_STM32/OLED_SSD1322_DMA/Core/Src/syscalls.o: \
+ D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/syscalls.c \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/stat.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_ansi.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/newlib.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/config.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/ieeefp.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/time.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_ansi.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/cdefs.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/reent.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/lock.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/time.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/endian.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_endian.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/select.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_sigset.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_timeval.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/timespec.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_timespec.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_pthreadtypes.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/sched.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_locale.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdlib.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/stdlib.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/alloca.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/errno.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/errno.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdio.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdarg.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/stdio.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/signal.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/signal.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/time.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_time.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/times.h
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/stat.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_ansi.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/newlib.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/config.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/ieeefp.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/time.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_ansi.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/cdefs.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stddef.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/reent.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/lock.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/time.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/endian.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_endian.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/select.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_sigset.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_timeval.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/timespec.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_timespec.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_pthreadtypes.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/sched.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_locale.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdlib.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/stdlib.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/alloca.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/errno.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/errno.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdio.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdarg.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/stdio.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/signal.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/signal.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/time.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_time.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/times.h:

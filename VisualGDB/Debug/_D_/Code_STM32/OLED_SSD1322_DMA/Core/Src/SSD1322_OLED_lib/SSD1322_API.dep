@@ -1,0 +1,20 @@
+VisualGDB/Debug/_D_/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_API.o: \
+ D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_API.c \
+ D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_HW_Driver.h \
+ C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h \
+ C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h \
+ D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_API.h
+D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_HW_Driver.h:
+C:/SysGCC/arm-eabi/lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/stdint.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/features.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/_newlib_version.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_intsup.h:
+C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h:
+D:/Code_STM32/OLED_SSD1322_DMA/Core/Src/SSD1322_OLED_lib/SSD1322_API.h:

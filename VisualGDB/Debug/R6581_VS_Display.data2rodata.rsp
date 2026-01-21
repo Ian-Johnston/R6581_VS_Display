@@ -1,0 +1,1 @@
+--set-section-alignment .data=1 --rename-section .data=.rodata VisualGDB/Debug/R6581_VS_Display.o0 VisualGDB/Debug/R6581_VS_Display.o

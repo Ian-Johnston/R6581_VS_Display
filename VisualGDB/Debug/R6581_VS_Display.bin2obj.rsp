@@ -1,0 +1,1 @@
+-r -b binary VisualGDB/Debug/R6581_VS_Display.hex -o VisualGDB/Debug/R6581_VS_Display.o0
