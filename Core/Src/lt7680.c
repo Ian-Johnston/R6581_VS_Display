@@ -248,6 +248,9 @@ void SendAllToLT7680_LT_2() {
 // Origin is top left on R6581T orientaton
 void DrawLine(uint16_t startX, uint16_t startY, uint16_t endX, uint16_t endY, uint16_t colorRED, uint16_t colorGREEN, uint16_t colorBLUE) {
 
+    // Previous text/line must be finished before coordinates and the shared colour registers are changed
+    WaitForLT7680Ready();
+
     // Start the drawing process
     //WriteRegister(0x67);
     //WriteData(0x01); // Set bit 0 to start drawing
@@ -291,12 +294,13 @@ void DrawLine(uint16_t startX, uint16_t startY, uint16_t endX, uint16_t endY, ui
     WriteRegister(0x67); // Draw Line/Triangle Control Register
     WriteData(0x80 | 0x00); // Start drawing (bit 7 = 1) and select "Draw Line" (bits 4-1 = 0000)
 
-    // Optionally, wait for the drawing to complete (polling)
-    //uint8_t drawlineFinished;
-    //do {
-    //    WriteRegister(0x67);                // Select the draw control register
-    //    drawlineFinished = ReadData();      // Read the draw status
-    //} while (drawlineFinished & 0x80);      // Bit 7 indicates whether drawing is in progress
+    // Wait for the drawing to complete - REG[67h] bit7 reads 1 while drawing is in progress
+    uint8_t drawlineFinished;
+    uint32_t timeout = 100000;
+    do {
+        WriteRegister(0x67);                // Select the draw control register
+        drawlineFinished = ReadData();      // Read the draw status
+    } while ((drawlineFinished & 0x80) && --timeout);
 }
 
 
@@ -432,6 +436,9 @@ void ConfigureFontAndPosition(uint8_t fontSource, uint8_t characterHeight, uint8
     uint8_t ccr0 = 0; // Character Control Register 0
     uint8_t ccr1 = 0; // Character Control Register 1
 
+    // Rotation, spacing and cursor may only change when the core is idle (datasheet STSR bit3 note)
+    WaitForLT7680Ready();
+
     // Configure CCR0 (REG[CCh])
     ccr0 |= ((fontSource & 0b11) << 6);         // Font source selection
     ccr0 |= ((characterHeight & 0b11) << 4);    // Character height
@@ -534,15 +541,35 @@ void DrawTextChunks(char* text) {
 }
 
 
-// DrawText helper
+// LT7680 busy / FIFO helpers - Status Register (STSR), LT768x datasheet V4.2 Table 19-2:
+//   bit7 = Memory Write FIFO full, bit6 = Memory Write FIFO empty, bit3 = Core task busy (text, BTE, draw)
+
+// Wait until the core task (text write, line draw, BTE) is idle - STSR bit3 = 0.
+// Datasheet: must be 0 before changing colours, spacing, rotation or text/graphic mode.
 void WaitForLT7680Ready(void)
 {
 	uint32_t timeout = 100000;
-	uint8_t status;
 
-	do {
-		status = ReadStatus(); // STSR
-	} while ((status & (1 << 3)) && --timeout);
+	while ((ReadStatus() & (1 << 3)) && --timeout);
+}
+
+// Wait until the Memory Write FIFO is not full - STSR bit7 = 0 (required before writing to REG[04h])
+void WaitForLT7680WriteFifoNotFull(void)
+{
+	uint32_t timeout = 100000;
+
+	while ((ReadStatus() & (1 << 7)) && --timeout);
+}
+
+// Wait until everything written to REG[04h] has been consumed and processed:
+// Memory Write FIFO empty (STSR bit6 = 1) and then core idle (STSR bit3 = 0).
+// Datasheet REG[04h] note 3: required before switching to another register after memory/text writes.
+void WaitForLT7680WriteComplete(void)
+{
+	uint32_t timeout = 100000;
+
+	while (!(ReadStatus() & (1 << 6)) && --timeout);
+	WaitForLT7680Ready();
 }
 
 
@@ -551,8 +578,9 @@ void DrawText(const char* text)
 {
 	while (*text != '\0') {
 
-		// Wait until LT7680 core/text engine is idle
+		// Wait until LT7680 core/text engine is idle and the write FIFO has room
 		WaitForLT7680Ready();
+		WaitForLT7680WriteFifoNotFull();
 
 		WriteRegister(0x04); // Register for writing text
 		WriteData((uint8_t)*text); // Write each character
@@ -560,8 +588,8 @@ void DrawText(const char* text)
 		++text;
 	}
 
-	// Wait until final character has completed
-	WaitForLT7680Ready();
+	// Wait until final character has left the FIFO and finished rendering
+	WaitForLT7680WriteComplete();
 }
 
 
@@ -602,6 +630,9 @@ void DrawText(char* text) {                                         // simple ve
 
 // Set text colours
 void SetTextColors(uint32_t foreground, uint32_t background) {
+    // Colour registers are shared by text and draw engines - must be idle before changing them
+    WaitForLT7680Ready();
+
     // Set foreground color
     WriteRegister(0xD2); // Foreground Red
     WriteData((foreground >> 16) & 0xFF);
@@ -705,10 +736,12 @@ void ConfigureActiveDisplayArea_LT() {
     WriteRegister(0x57); WriteData(0x00);  // X Start High
     WriteRegister(0x58); WriteData(0x00);  // Y Start Low
     WriteRegister(0x59); WriteData(0x00);  // Y Start High
-    WriteRegister(0x5A); WriteData((LCD_XSIZE_TFT - 1) & 0xFF);  // X End Low
-    WriteRegister(0x5B); WriteData(((LCD_XSIZE_TFT - 1) >> 8) & 0xFF);  // X End High
-    WriteRegister(0x5C); WriteData((LCD_YSIZE_TFT - 1) & 0xFF);  // Y End Low
-    WriteRegister(0x5D); WriteData(((LCD_YSIZE_TFT - 1) >> 8) & 0xFF);  // Y End High
+    // REG[5Ah-5Dh] are Active Window WIDTH and HEIGHT in pixels (datasheet p158), not end coordinates.
+    // Writing size-1 left the last column (x=399) and last line (y=959) outside the window, never cleared.
+    WriteRegister(0x5A); WriteData(LCD_XSIZE_TFT & 0xFF);         // Width Low
+    WriteRegister(0x5B); WriteData((LCD_XSIZE_TFT >> 8) & 0x3F);  // Width High (bits 13:8)
+    WriteRegister(0x5C); WriteData(LCD_YSIZE_TFT & 0xFF);         // Height Low
+    WriteRegister(0x5D); WriteData((LCD_YSIZE_TFT >> 8) & 0x3F);  // Height High (bits 13:8)
 }
 
 /*
@@ -957,16 +990,15 @@ void Configure_Main_PIP_Window_LT() {
 void SDRAM_Init_LT() {
 
     unsigned short sdram_itv;
-    uint8_t regValue1 = 0;
 
-    // Step 1: Enable SDRAM Timing Parameter Registers (Bit 2 = 1)
-    WriteRegister(0xE4);        // Allow addresses 0xE0 to 0xE3 to be set
-    regValue1 |= (1 << 2);      // Set Bit 2
-    WriteData(regValue1);
+    // NOTE: REG[E4h] bit2 (SDR_PARAMEN) must stay 0 here. When it is 1, REG[E0h]-REG[E3h] become the
+    // SDRAM *timing parameter* registers instead of Attribute / CAS latency / Refresh Interval, so the
+    // values below would land in the wrong registers and auto-refresh would stay at its default of 0000h
+    // (= refresh disabled), causing random pixel corruption. Sequence follows Levetop AP-Note V1.2 p27.
 
-    // Step 2: Configure SDRAM settings
-    WriteRegister(0xE0);        // Register 0xE0: SDRAM Control Register
-    WriteData(0x29);            // Default SDRAM control value specifically for LT7680A-R      LT7680A = 64MB, LT&^*)A-R 128MB I think!   set to 0x21 or 0x29
+    // Step 1: Configure SDRAM settings
+    WriteRegister(0xE0);        // Register 0xE0: SDRAM Attribute Register (SDRAR)
+    WriteData(0x29);            // LT7680A-R (128Mb): 4 banks, 4K rows, 512 columns - datasheet Table 19-6
 
     WriteRegister(0xE1);        // Register 0xE1: SDRAM CAS Latency
     WriteData(0x03);            // Set CAS latency to 0x03 as suggested by manual
@@ -985,17 +1017,9 @@ void SDRAM_Init_LT() {
     WriteData(sdram_itv >> 8);                                 // sdram_itv >> 8) & 0xFF
     //WriteData(0x06);            // Set to 0x06 as reference setting by manual for LT7680A-R
 
-    // Step 3: Trigger SDRAM Initialization (Set Bit 0 = 1)
+    // Step 2: Trigger SDRAM Initialization (Set Bit 0 = 1, bit 2 SDR_PARAMEN left at 0)
     WriteRegister(0xE4);
-    //regValue1 |= (1 << 0);      // Set Bit 0 (SDR_INITDONE)
-    //WriteData(regValue1);
     WriteData(0x01);
-
-    // Step 4: Disable Timing Parameter Registers (Clear Bit 2)
-    WriteRegister(0xE4);        // Disable, addresses 0xE0 to 0xE3 can no longer be set
-    regValue1 &= ~(1 << 2);     // Clear Bit 2
-    //regValue1 |= (0 << 2);
-    WriteData(regValue1);
 
     HAL_Delay(1); // 1 ms delay
 

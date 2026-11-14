@@ -29,6 +29,11 @@ uint8_t ReadStatus(void);
 uint8_t ReadData(void);
 void WriteDataToRegister(uint8_t reg, uint8_t value);
 
+// Busy / FIFO checks (Status Register)
+void WaitForLT7680Ready(void);              // core idle (STSR bit3 = 0)
+void WaitForLT7680WriteFifoNotFull(void);   // write FIFO not full (STSR bit7 = 0)
+void WaitForLT7680WriteComplete(void);      // write FIFO empty (bit6 = 1) then core idle
+
 // Testing routines
 //void OriginalFillSDRAM_LT(void);
 //void BootClearToRed(void);
