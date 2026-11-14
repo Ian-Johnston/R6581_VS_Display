@@ -1,5 +1,7 @@
 # Advantest R6581(T) DMM TFT display upgrade - STM32 BluePill + LT7680A-R + 4.58" 320x960 TFT
 
+![R6581 TFT display upgrade](Photos/R6581.png)
+
 R6581 VFD reverse engineering by MickleT, who developed the original OLED conversion. EEVBlog thread:
 https://www.eevblog.com/forum/repair/advantest-r6581-vfd-replacement/
 
